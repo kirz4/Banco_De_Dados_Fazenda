@@ -29,9 +29,9 @@ async function verEstufas() {
         <div class="p-4 mb-4 bg-white rounded shadow-md">
           <p><strong>ID:</strong> ${estufa.ID_Estufa}</p>
           <p><strong>Localização:</strong> ${estufa.Localizacao}</p>
-          <p><strong>Temperatura:</strong> ${estufa.Temperatura}</p>
-          <p><strong>Umidade:</strong> ${estufa.Umidade}</p>
-          <p><strong>Tamanho:</strong> ${estufa.Tamanho}</p>
+          <p><strong>Temperatura:</strong> ${estufa.Temperatura}°C</p>
+          <p><strong>Umidade:</strong> ${estufa.Umidade}%</p>
+          <p><strong>Tamanho:</strong> ${estufa.Tamanho}m²</p>
         </div>
         `
       )

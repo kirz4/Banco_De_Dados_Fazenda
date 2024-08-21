@@ -33,7 +33,7 @@ async function verColheitas() {
             ).toLocaleDateString()}</p>
             <p><strong>Quantidade Colhida:</strong> ${
               colheita.Quantidade_Colhida
-            }</p>
+            }g</p>
             <p><strong>Qualidade:</strong> ${colheita.Qualidade}</p>
             <p><strong>ID Planta:</strong> ${colheita.ID_Planta}</p>
           </div>
