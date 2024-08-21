@@ -107,33 +107,51 @@
       }
 
       async function verEstufas() {
-        const response = await fetch("http://localhost:3000/estufa");
-        const estufas = await response.json();
-        const lista = estufas
-          .map(
-            (estufa) => `
-        ID: ${estufa.ID_Estufa}, Localização: ${estufa.Localizacao}, Temperatura: ${estufa.Temperatura}, Umidade: ${estufa.Umidade}, Tamanho: ${estufa.Tamanho}
-      `
-          )
-          .join("<br>");
-        document.getElementById("listaEstufas").innerHTML = lista;
+        const listaEstufasDiv = document.getElementById("listaEstufas");
+        if (
+          listaEstufasDiv.style.display === "none" ||
+          listaEstufasDiv.innerHTML === ""
+        ) {
+          const response = await fetch("http://localhost:3000/estufa");
+          const estufas = await response.json();
+          const lista = estufas
+            .map(
+              (estufa) => `
+            ID: ${estufa.ID_Estufa}, Localização: ${estufa.Localizacao}, Temperatura: ${estufa.Temperatura}, Umidade: ${estufa.Umidade}, Tamanho: ${estufa.Tamanho}
+            `
+            )
+            .join("<br>");
+          listaEstufasDiv.innerHTML = lista;
+          listaEstufasDiv.style.display = "block";
+        } else {
+          listaEstufasDiv.style.display = "none";
+        }
       }
 
       async function listarEstufas() {
-        const response = await fetch("http://localhost:3000/estufa");
-        const estufas = await response.json();
-        const options = estufas
-          .map(
-            (estufa) =>
-              `<option value="${estufa.ID_Estufa}">ID: ${estufa.ID_Estufa}</option>`
-          )
-          .join("");
-        const select = `
-    <p><strong>Nota:</strong> Certifique-se de excluir todas as plantas associadas antes de remover a estufa.</p>
-    <select id="estufaSelect">${options}</select>
-    <button onclick="removerEstufa()">Remover</button>
-  `;
-        document.getElementById("removerEstufaDiv").innerHTML = select;
+        const removerEstufaDiv = document.getElementById("removerEstufaDiv");
+        if (
+          removerEstufaDiv.style.display === "none" ||
+          removerEstufaDiv.innerHTML === ""
+        ) {
+          const response = await fetch("http://localhost:3000/estufa");
+          const estufas = await response.json();
+          const options = estufas
+            .map(
+              (estufa) =>
+                `<option value="${estufa.ID_Estufa}">ID: ${estufa.ID_Estufa}</option>`
+            )
+            .join("");
+          const select = `
+        <p><strong>Nota:</strong> Certifique-se de excluir todas as plantas associadas antes de remover a estufa.</p>
+        <select id="estufaSelect">${options}</select>
+        <button onclick="removerEstufa()">Remover</button>
+        `;
+          removerEstufaDiv.innerHTML = select;
+          removerEstufaDiv.style.display = "block";
+        } else {
+          removerEstufaDiv.style.display = "none";
+        }
       }
 
       async function removerEstufa() {
@@ -162,35 +180,53 @@
       }
 
       async function verLotes() {
-        const response = await fetch("http://localhost:3000/lote");
-        const lotes = await response.json();
-        const lista = lotes
-          .map(
-            (lote) => `
-        ID: ${lote.ID_Lote}, Data de Criação: ${new Date(
-              lote.Data_Criacao
-            ).toLocaleDateString()}, Número de Plantas: ${lote.Numero_Plantas}
-      `
-          )
-          .join("<br>");
-        document.getElementById("listaLotes").innerHTML = lista;
+        const listaLotesDiv = document.getElementById("listaLotes");
+        if (
+          listaLotesDiv.style.display === "none" ||
+          listaLotesDiv.innerHTML === ""
+        ) {
+          const response = await fetch("http://localhost:3000/lote");
+          const lotes = await response.json();
+          const lista = lotes
+            .map(
+              (lote) => `
+            ID: ${lote.ID_Lote}, Data de Criação: ${new Date(
+                lote.Data_Criacao
+              ).toLocaleDateString()}, Número de Plantas: ${lote.Numero_Plantas}
+            `
+            )
+            .join("<br>");
+          listaLotesDiv.innerHTML = lista;
+          listaLotesDiv.style.display = "block";
+        } else {
+          listaLotesDiv.style.display = "none";
+        }
       }
 
       async function listarLotes() {
-        const response = await fetch("http://localhost:3000/lote");
-        const lotes = await response.json();
-        const options = lotes
-          .map(
-            (lote) =>
-              `<option value="${lote.ID_Lote}">ID: ${lote.ID_Lote}</option>`
-          )
-          .join("");
-        const select = `
-    <p><strong>Nota:</strong> Certifique-se de excluir todas as plantas associadas antes de remover o lote.</p>
-    <select id="loteSelect">${options}</select>
-    <button onclick="removerLote()">Remover</button>
-  `;
-        document.getElementById("removerLoteDiv").innerHTML = select;
+        const removerLoteDiv = document.getElementById("removerLoteDiv");
+        if (
+          removerLoteDiv.style.display === "none" ||
+          removerLoteDiv.innerHTML === ""
+        ) {
+          const response = await fetch("http://localhost:3000/lote");
+          const lotes = await response.json();
+          const options = lotes
+            .map(
+              (lote) =>
+                `<option value="${lote.ID_Lote}">ID: ${lote.ID_Lote}</option>`
+            )
+            .join("");
+          const select = `
+        <p><strong>Nota:</strong> Certifique-se de excluir todas as plantas associadas antes de remover o lote.</p>
+        <select id="loteSelect">${options}</select>
+        <button onclick="removerLote()">Remover</button>
+        `;
+          removerLoteDiv.innerHTML = select;
+          removerLoteDiv.style.display = "block";
+        } else {
+          removerLoteDiv.style.display = "none";
+        }
       }
 
       async function removerLote() {
@@ -223,29 +259,47 @@
       }
 
       async function verPlantas() {
-        const response = await fetch("http://localhost:3000/planta");
-        const plantas = await response.json();
-        const lista = plantas
-          .map(
-            (planta) => `
-        ID: ${planta.ID_Planta}, Variedade: ${planta.Variedade}, Data de Plantio: ${planta.Data_Plantio}, Estágio de Crescimento: ${planta.Estagio_Crescimento}, ID Lote: ${planta.ID_Lote}, ID Estufa: ${planta.ID_Estufa}
-      `
-          )
-          .join("<br>");
-        document.getElementById("listaPlantas").innerHTML = lista;
+        const listaPlantasDiv = document.getElementById("listaPlantas");
+        if (
+          listaPlantasDiv.style.display === "none" ||
+          listaPlantasDiv.innerHTML === ""
+        ) {
+          const response = await fetch("http://localhost:3000/planta");
+          const plantas = await response.json();
+          const lista = plantas
+            .map(
+              (planta) => `
+            ID: ${planta.ID_Planta}, Variedade: ${planta.Variedade}, Data de Plantio: ${planta.Data_Plantio}, Estágio de Crescimento: ${planta.Estagio_Crescimento}, ID Lote: ${planta.ID_Lote}, ID Estufa: ${planta.ID_Estufa}
+            `
+            )
+            .join("<br>");
+          listaPlantasDiv.innerHTML = lista;
+          listaPlantasDiv.style.display = "block";
+        } else {
+          listaPlantasDiv.style.display = "none";
+        }
       }
 
       async function listarPlantas() {
-        const response = await fetch("http://localhost:3000/planta");
-        const plantas = await response.json();
-        const options = plantas
-          .map(
-            (planta) =>
-              `<option value="${planta.ID_Planta}">ID: ${planta.ID_Planta}</option>`
-          )
-          .join("");
-        const select = `<select id="plantaSelect">${options}</select><button onclick="removerPlanta()">Remover</button>`;
-        document.getElementById("removerPlantaDiv").innerHTML = select;
+        const removerPlantaDiv = document.getElementById("removerPlantaDiv");
+        if (
+          removerPlantaDiv.style.display === "none" ||
+          removerPlantaDiv.innerHTML === ""
+        ) {
+          const response = await fetch("http://localhost:3000/planta");
+          const plantas = await response.json();
+          const options = plantas
+            .map(
+              (planta) =>
+                `<option value="${planta.ID_Planta}">ID: ${planta.ID_Planta}</option>`
+            )
+            .join("");
+          const select = `<select id="plantaSelect">${options}</select><button onclick="removerPlanta()">Remover</button>`;
+          removerPlantaDiv.innerHTML = select;
+          removerPlantaDiv.style.display = "block";
+        } else {
+          removerPlantaDiv.style.display = "none";
+        }
       }
 
       async function removerPlanta() {
@@ -277,35 +331,54 @@
       }
 
       async function verColheitas() {
-        const response = await fetch("http://localhost:3000/colheita");
-        const colheitas = await response.json();
-        const lista = colheitas
-          .map(
-            (colheita) => `
-        ID: ${colheita.ID_Colheita}, Data de Colheita: ${new Date(
-              colheita.Data_Colheita
-            ).toLocaleDateString()}, Quantidade Colhida: ${
-              colheita.Quantidade_Colhida
-            }, Qualidade: ${colheita.Qualidade}, ID Planta: ${
-              colheita.ID_Planta
-            }
-      `
-          )
-          .join("<br>");
-        document.getElementById("listaColheitas").innerHTML = lista;
+        const listaColheitasDiv = document.getElementById("listaColheitas");
+        if (
+          listaColheitasDiv.style.display === "none" ||
+          listaColheitasDiv.innerHTML === ""
+        ) {
+          const response = await fetch("http://localhost:3000/colheita");
+          const colheitas = await response.json();
+          const lista = colheitas
+            .map(
+              (colheita) => `
+            ID: ${colheita.ID_Colheita}, Data de Colheita: ${new Date(
+                colheita.Data_Colheita
+              ).toLocaleDateString()}, Quantidade Colhida: ${
+                colheita.Quantidade_Colhida
+              }, Qualidade: ${colheita.Qualidade}, ID Planta: ${
+                colheita.ID_Planta
+              }
+            `
+            )
+            .join("<br>");
+          listaColheitasDiv.innerHTML = lista;
+          listaColheitasDiv.style.display = "block";
+        } else {
+          listaColheitasDiv.style.display = "none";
+        }
       }
 
       async function listarColheitas() {
-        const response = await fetch("http://localhost:3000/colheita");
-        const colheitas = await response.json();
-        const options = colheitas
-          .map(
-            (colheita) =>
-              `<option value="${colheita.ID_Colheita}">ID: ${colheita.ID_Colheita}</option>`
-          )
-          .join("");
-        const select = `<select id="colheitaSelect">${options}</select><button onclick="removerColheita()">Remover</button>`;
-        document.getElementById("removerColheitaDiv").innerHTML = select;
+        const removerColheitaDiv =
+          document.getElementById("removerColheitaDiv");
+        if (
+          removerColheitaDiv.style.display === "none" ||
+          removerColheitaDiv.innerHTML === ""
+        ) {
+          const response = await fetch("http://localhost:3000/colheita");
+          const colheitas = await response.json();
+          const options = colheitas
+            .map(
+              (colheita) =>
+                `<option value="${colheita.ID_Colheita}">ID: ${colheita.ID_Colheita}</option>`
+            )
+            .join("");
+          const select = `<select id="colheitaSelect">${options}</select><button onclick="removerColheita()">Remover</button>`;
+          removerColheitaDiv.innerHTML = select;
+          removerColheitaDiv.style.display = "block";
+        } else {
+          removerColheitaDiv.style.display = "none";
+        }
       }
 
       async function removerColheita() {
