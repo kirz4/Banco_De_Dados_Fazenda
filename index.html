@@ -125,14 +125,14 @@
         const options = estufas
           .map(
             (estufa) =>
-              `<option value="${estufa.ID_Estufa}">ID: ${estufa.ID_Estufa} - Localização: ${estufa.Localizacao}</option>`
+              `<option value="${estufa.ID_Estufa}">ID: ${estufa.ID_Estufa}</option>`
           )
           .join("");
         const select = `
-        <p><strong>Nota:</strong> Certifique-se de excluir todas as plantas associadas antes de remover a estufa.</p>
-        <select id="estufaSelect">${options}</select>
-        <button onclick="removerEstufa()">Remover</button>
-      `;
+    <p><strong>Nota:</strong> Certifique-se de excluir todas as plantas associadas antes de remover a estufa.</p>
+    <select id="estufaSelect">${options}</select>
+    <button onclick="removerEstufa()">Remover</button>
+  `;
         document.getElementById("removerEstufaDiv").innerHTML = select;
       }
 
@@ -182,14 +182,14 @@
         const options = lotes
           .map(
             (lote) =>
-              `<option value="${lote.ID_Lote}">ID: ${lote.ID_Lote} - Número de Plantas: ${lote.Numero_Plantas}</option>`
+              `<option value="${lote.ID_Lote}">ID: ${lote.ID_Lote}</option>`
           )
           .join("");
         const select = `
-        <p><strong>Nota:</strong> Certifique-se de excluir todas as plantas associadas antes de remover o lote.</p>
-        <select id="loteSelect">${options}</select>
-        <button onclick="removerLote()">Remover</button>
-      `;
+    <p><strong>Nota:</strong> Certifique-se de excluir todas as plantas associadas antes de remover o lote.</p>
+    <select id="loteSelect">${options}</select>
+    <button onclick="removerLote()">Remover</button>
+  `;
         document.getElementById("removerLoteDiv").innerHTML = select;
       }
 
@@ -241,7 +241,7 @@
         const options = plantas
           .map(
             (planta) =>
-              `<option value="${planta.ID_Planta}">ID: ${planta.ID_Planta} - Variedade: ${planta.Variedade}</option>`
+              `<option value="${planta.ID_Planta}">ID: ${planta.ID_Planta}</option>`
           )
           .join("");
         const select = `<select id="plantaSelect">${options}</select><button onclick="removerPlanta()">Remover</button>`;
@@ -301,7 +301,7 @@
         const options = colheitas
           .map(
             (colheita) =>
-              `<option value="${colheita.ID_Colheita}">ID: ${colheita.ID_Colheita} - Data: ${colheita.Data_Colheita}</option>`
+              `<option value="${colheita.ID_Colheita}">ID: ${colheita.ID_Colheita}</option>`
           )
           .join("");
         const select = `<select id="colheitaSelect">${options}</select><button onclick="removerColheita()">Remover</button>`;
