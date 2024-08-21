@@ -256,6 +256,67 @@
         </button>
         <div id="listaPlantaLote" class="mt-4"></div>
       </div>
+
+      <!-- Seção das Procedures -->
+      <h1 class="text-4xl font-semibold mb-8 text-center">Procedures</h1>
+
+      <!-- Atualizar Temperatura da Estufa -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">
+          Atualizar Temperatura da Estufa
+        </h2>
+        <form id="atualizarTemperaturaForm" class="space-y-4">
+          <input
+            type="number"
+            id="idEstufaTemperatura"
+            placeholder="ID da Estufa: Ex: 1"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="novaTemperatura"
+            placeholder="Nova Temperatura: Ex: 28.5"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <button
+            type="button"
+            onclick="atualizarTemperaturaEstufa()"
+            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            Atualizar Temperatura
+          </button>
+        </form>
+        <div id="resultadoAtualizacaoTemperatura" class="mt-4"></div>
+      </div>
+
+      <!-- Atualizar Estágio de Crescimento da Planta -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">
+          Atualizar Estágio de Crescimento da Planta
+        </h2>
+        <form id="atualizarEstagioForm" class="space-y-4">
+          <input
+            type="number"
+            id="idPlantaEstagio"
+            placeholder="ID da Planta: Ex: 1"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="text"
+            id="novoEstagioCrescimento"
+            placeholder="Novo Estágio: Ex: Frutificação"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <button
+            type="button"
+            onclick="atualizarEstagioCrescimentoPlanta()"
+            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            Atualizar Estágio
+          </button>
+        </form>
+        <div id="resultadoAtualizacaoEstagio" class="mt-4"></div>
+      </div>
     </div>
 
     <script src="actions/estufa.js"></script>
@@ -263,5 +324,6 @@
     <script src="actions/planta.js"></script>
     <script src="actions/colheita.js"></script>
     <script src="actions/views.js"></script>
+    <script src="actions/procedures.js"></script>
   </body>
 </html>

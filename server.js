@@ -170,6 +170,42 @@ app.get("/vw_PlantaLote", (req, res) => {
   });
 });
 
+// Rota para Atualizar o Estágio de Crescimento da Planta
+
+app.put("/planta/:id/estagio", (req, res) => {
+  const { id } = req.params;
+  const { estagio } = req.body;
+
+  db.query(
+    "CALL sp_AtualizarEstagioCrescimento(?, ?)",
+    [id, estagio],
+    (err, results) => {
+      if (err) {
+        return res.status(500).send(err.sqlMessage);
+      }
+      res.json(results[0]); // Retorna a mensagem de confirmação da Procedure
+    }
+  );
+});
+
+// Rota para atualizar temperatura da estufa
+
+app.put("/estufa/:id/temperatura", (req, res) => {
+  const { id } = req.params;
+  const { temperatura } = req.body;
+
+  db.query(
+    "CALL sp_AtualizarTemperaturaEstufa(?, ?)",
+    [id, temperatura],
+    (err, results) => {
+      if (err) {
+        return res.status(500).send(err.sqlMessage);
+      }
+      res.json(results[0]); // Retorna a mensagem de confirmação da Procedure
+    }
+  );
+});
+
 // Iniciar o servidor
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");

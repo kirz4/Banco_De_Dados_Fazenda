@@ -121,3 +121,63 @@ FROM
     Planta p
 JOIN 
     Lote l ON p.ID_Lote = l.ID_Lote;
+
+-- Procedure para Atualizar a Temperatura da Estufa
+DELIMITER //
+
+CREATE PROCEDURE sp_AtualizarTemperaturaEstufa(
+    IN estufaID INT, 
+    IN novaTemperatura DECIMAL(5,2)
+)
+BEGIN
+    DECLARE estufaExiste INT;
+
+    -- Verifica se a estufa com o ID fornecido existe
+    SELECT COUNT(*) INTO estufaExiste FROM Estufa WHERE ID_Estufa = estufaID;
+
+    IF estufaExiste = 0 THEN
+        -- Se a estufa não existir, retorna uma mensagem de erro
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'A estufa com o ID fornecido não existe.';
+    ELSE
+        -- Atualiza a temperatura da estufa se ela existir
+        UPDATE Estufa
+        SET Temperatura = novaTemperatura
+        WHERE ID_Estufa = estufaID;
+
+        -- Retorna uma mensagem confirmando a atualização
+        SELECT CONCAT('A temperatura da estufa com ID ', estufaID, ' foi atualizada para ', novaTemperatura, '°C') AS Mensagem;
+    END IF;
+END //
+
+DELIMITER ;
+
+
+-- Procedure para Atualizar o Estágio de Crescimento da Planta
+
+DELIMITER //
+
+CREATE PROCEDURE sp_AtualizarEstagioCrescimento(
+    IN plantaID INT, 
+    IN novoEstagio VARCHAR(50)
+)
+BEGIN
+    DECLARE plantaExiste INT;
+
+    -- Verifica se a planta com o ID fornecido existe
+    SELECT COUNT(*) INTO plantaExiste FROM Planta WHERE ID_Planta = plantaID;
+
+    IF plantaExiste = 0 THEN
+        -- Se a planta não existir, retorna uma mensagem de erro
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'A planta com o ID fornecido não existe.';
+    ELSE
+        -- Atualiza o estágio de crescimento da planta se ela existir
+        UPDATE Planta
+        SET Estagio_Crescimento = novoEstagio
+        WHERE ID_Planta = plantaID;
+
+        -- Retorna uma mensagem confirmando a atualização
+        SELECT CONCAT('O estágio de crescimento da planta com ID ', plantaID, ' foi atualizado para ', novoEstagio) AS Mensagem;
+    END IF;
+END //
+
+DELIMITER ;
