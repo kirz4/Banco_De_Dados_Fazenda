@@ -3,392 +3,240 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fazenda CRUD Interface</title>
+    <title>Fazenda Interface</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <h1>Fazenda CRUD Interface</h1>
+  <body class="bg-gray-100 text-gray-900">
+    <div class="container mx-auto p-4">
+      <h1 class="text-3xl font-bold mb-6 text-center">
+        Fazenda CRUD Interface
+      </h1>
 
-    <!-- Seção de Estufa -->
-    <h2>Estufa</h2>
-    <form id="estufaForm">
-      <input type="text" id="localizacao" placeholder="Localização" />
-      <input type="number" id="temperatura" placeholder="Temperatura" />
-      <input type="number" id="umidade" placeholder="Umidade" />
-      <input type="number" id="tamanho" placeholder="Tamanho" />
-      <button type="button" onclick="criarEstufa()">Criar Estufa</button>
-    </form>
-    <button type="button" onclick="verEstufas()">Ver Estufas</button>
-    <div id="listaEstufas"></div>
+      <!-- Seção de Estufa -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Estufa</h2>
+        <form id="estufaForm" class="space-y-4">
+          <input
+            type="text"
+            id="localizacao"
+            placeholder="Localização"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="temperatura"
+            placeholder="Temperatura"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="umidade"
+            placeholder="Umidade"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="tamanho"
+            placeholder="Tamanho"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <button
+            type="button"
+            onclick="criarEstufa()"
+            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            Criar Estufa
+          </button>
+        </form>
+        <button
+          type="button"
+          onclick="verEstufas()"
+          class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+        >
+          Ver Estufas
+        </button>
+        <div id="listaEstufas" class="mt-4"></div>
+      </div>
 
-    <h3>Remover Estufa</h3>
-    <button type="button" onclick="listarEstufas()">
-      Listar Estufas para Remover
-    </button>
-    <div id="removerEstufaDiv"></div>
+      <h3 class="text-xl font-semibold mb-4">Remover Estufa</h3>
+      <button
+        type="button"
+        onclick="listarEstufas()"
+        class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+      >
+        Listar Estufas para Remover
+      </button>
+      <div id="removerEstufaDiv" class="mt-4"></div>
 
-    <!-- Seção de Lote -->
-    <h2>Lote</h2>
-    <form id="loteForm">
-      <input type="date" id="dataCriacao" placeholder="Data de Criação" />
-      <input type="number" id="numeroPlantas" placeholder="Número de Plantas" />
-      <button type="button" onclick="criarLote()">Criar Lote</button>
-    </form>
-    <button type="button" onclick="verLotes()">Ver Lotes</button>
-    <div id="listaLotes"></div>
+      <!-- Seção de Lote -->
+      <div class="mb-8 mt-8">
+        <h2 class="text-2xl font-semibold mb-4">Lote</h2>
+        <form id="loteForm" class="space-y-4">
+          <input
+            type="date"
+            id="dataCriacao"
+            placeholder="Data de Criação"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="numeroPlantas"
+            placeholder="Número de Plantas"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <button
+            type="button"
+            onclick="criarLote()"
+            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            Criar Lote
+          </button>
+        </form>
+        <button
+          type="button"
+          onclick="verLotes()"
+          class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+        >
+          Ver Lotes
+        </button>
+        <div id="listaLotes" class="mt-4"></div>
+      </div>
 
-    <h3>Remover Lote</h3>
-    <button type="button" onclick="listarLotes()">
-      Listar Lotes para Remover
-    </button>
-    <div id="removerLoteDiv"></div>
+      <h3 class="text-xl font-semibold mb-4">Remover Lote</h3>
+      <button
+        type="button"
+        onclick="listarLotes()"
+        class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+      >
+        Listar Lotes para Remover
+      </button>
+      <div id="removerLoteDiv" class="mt-4"></div>
 
-    <!-- Seção de Planta -->
-    <h2>Planta</h2>
-    <form id="plantaForm">
-      <input type="text" id="variedade" placeholder="Variedade" />
-      <input type="date" id="dataPlantio" placeholder="Data de Plantio" />
-      <input
-        type="text"
-        id="estagioCrescimento"
-        placeholder="Estágio de Crescimento"
-      />
-      <input type="number" id="idLotePlanta" placeholder="ID do Lote" />
-      <input type="number" id="idEstufaPlanta" placeholder="ID da Estufa" />
-      <button type="button" onclick="criarPlanta()">Criar Planta</button>
-    </form>
-    <button type="button" onclick="verPlantas()">Ver Plantas</button>
-    <div id="listaPlantas"></div>
+      <!-- Seção de Planta -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Planta</h2>
+        <form id="plantaForm" class="space-y-4">
+          <input
+            type="text"
+            id="variedade"
+            placeholder="Variedade"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="date"
+            id="dataPlantio"
+            placeholder="Data de Plantio"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="text"
+            id="estagioCrescimento"
+            placeholder="Estágio de Crescimento"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="idLotePlanta"
+            placeholder="ID do Lote"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="idEstufaPlanta"
+            placeholder="ID da Estufa"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <button
+            type="button"
+            onclick="criarPlanta()"
+            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            Criar Planta
+          </button>
+        </form>
+        <button
+          type="button"
+          onclick="verPlantas()"
+          class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+        >
+          Ver Plantas
+        </button>
+        <div id="listaPlantas" class="mt-4"></div>
+      </div>
 
-    <h3>Remover Planta</h3>
-    <button type="button" onclick="listarPlantas()">
-      Listar Plantas para Remover
-    </button>
-    <div id="removerPlantaDiv"></div>
+      <h3 class="text-xl font-semibold mb-4">Remover Planta</h3>
+      <button
+        type="button"
+        onclick="listarPlantas()"
+        class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+      >
+        Listar Plantas para Remover
+      </button>
+      <div id="removerPlantaDiv" class="mt-4"></div>
 
-    <!-- Seção de Colheita -->
-    <h2>Colheita</h2>
-    <form id="colheitaForm">
-      <input type="date" id="dataColheita" placeholder="Data de Colheita" />
-      <input
-        type="number"
-        id="quantidadeColhida"
-        placeholder="Quantidade Colhida"
-      />
-      <input type="text" id="qualidade" placeholder="Qualidade" />
-      <input type="number" id="idPlantaColheita" placeholder="ID da Planta" />
-      <button type="button" onclick="criarColheita()">Criar Colheita</button>
-    </form>
-    <button type="button" onclick="verColheitas()">Ver Colheitas</button>
-    <div id="listaColheitas"></div>
+      <!-- Seção de Colheita -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Colheita</h2>
+        <form id="colheitaForm" class="space-y-4">
+          <input
+            type="date"
+            id="dataColheita"
+            placeholder="Data de Colheita"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="quantidadeColhida"
+            placeholder="Quantidade Colhida"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="text"
+            id="qualidade"
+            placeholder="Qualidade"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="idPlantaColheita"
+            placeholder="ID da Planta"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <button
+            type="button"
+            onclick="criarColheita()"
+            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            Criar Colheita
+          </button>
+        </form>
+        <button
+          type="button"
+          onclick="verColheitas()"
+          class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+        >
+          Ver Colheitas
+        </button>
+        <div id="listaColheitas" class="mt-4"></div>
+      </div>
 
-    <h3>Remover Colheita</h3>
-    <button type="button" onclick="listarColheitas()">
-      Listar Colheitas para Remover
-    </button>
-    <div id="removerColheitaDiv"></div>
+      <h3 class="text-xl font-semibold mb-4">Remover Colheita</h3>
+      <button
+        type="button"
+        onclick="listarColheitas()"
+        class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+      >
+        Listar Colheitas para Remover
+      </button>
+      <div id="removerColheitaDiv" class="mt-4"></div>
+    </div>
 
-    <script>
-      // Funções para Estufa
-      async function criarEstufa() {
-        const estufa = {
-          localizacao: document.getElementById("localizacao").value,
-          temperatura: document.getElementById("temperatura").value,
-          umidade: document.getElementById("umidade").value,
-          tamanho: document.getElementById("tamanho").value,
-        };
-        const response = await fetch("http://localhost:3000/estufa", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(estufa),
-        });
-        alert(await response.text());
-      }
-
-      async function verEstufas() {
-        const listaEstufasDiv = document.getElementById("listaEstufas");
-        if (
-          listaEstufasDiv.style.display === "none" ||
-          listaEstufasDiv.innerHTML === ""
-        ) {
-          const response = await fetch("http://localhost:3000/estufa");
-          const estufas = await response.json();
-          const lista = estufas
-            .map(
-              (estufa) => `
-            ID: ${estufa.ID_Estufa}, Localização: ${estufa.Localizacao}, Temperatura: ${estufa.Temperatura}, Umidade: ${estufa.Umidade}, Tamanho: ${estufa.Tamanho}
-            `
-            )
-            .join("<br>");
-          listaEstufasDiv.innerHTML = lista;
-          listaEstufasDiv.style.display = "block";
-        } else {
-          listaEstufasDiv.style.display = "none";
-        }
-      }
-
-      async function listarEstufas() {
-        const removerEstufaDiv = document.getElementById("removerEstufaDiv");
-        if (
-          removerEstufaDiv.style.display === "none" ||
-          removerEstufaDiv.innerHTML === ""
-        ) {
-          const response = await fetch("http://localhost:3000/estufa");
-          const estufas = await response.json();
-          const options = estufas
-            .map(
-              (estufa) =>
-                `<option value="${estufa.ID_Estufa}">ID: ${estufa.ID_Estufa}</option>`
-            )
-            .join("");
-          const select = `
-        <p><strong>Nota:</strong> Certifique-se de excluir todas as plantas associadas antes de remover a estufa.</p>
-        <select id="estufaSelect">${options}</select>
-        <button onclick="removerEstufa()">Remover</button>
-        `;
-          removerEstufaDiv.innerHTML = select;
-          removerEstufaDiv.style.display = "block";
-        } else {
-          removerEstufaDiv.style.display = "none";
-        }
-      }
-
-      async function removerEstufa() {
-        const id = document.getElementById("estufaSelect").value;
-        const response = await fetch(`http://localhost:3000/estufa/${id}`, {
-          method: "DELETE",
-        });
-        alert(await response.text());
-        listarEstufas();
-      }
-
-      // Funções para Lote
-      async function criarLote() {
-        const lote = {
-          data_criacao: document.getElementById("dataCriacao").value,
-          numero_plantas: document.getElementById("numeroPlantas").value,
-        };
-        const response = await fetch("http://localhost:3000/lote", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(lote),
-        });
-        alert(await response.text());
-      }
-
-      async function verLotes() {
-        const listaLotesDiv = document.getElementById("listaLotes");
-        if (
-          listaLotesDiv.style.display === "none" ||
-          listaLotesDiv.innerHTML === ""
-        ) {
-          const response = await fetch("http://localhost:3000/lote");
-          const lotes = await response.json();
-          const lista = lotes
-            .map(
-              (lote) => `
-            ID: ${lote.ID_Lote}, Data de Criação: ${new Date(
-                lote.Data_Criacao
-              ).toLocaleDateString()}, Número de Plantas: ${lote.Numero_Plantas}
-            `
-            )
-            .join("<br>");
-          listaLotesDiv.innerHTML = lista;
-          listaLotesDiv.style.display = "block";
-        } else {
-          listaLotesDiv.style.display = "none";
-        }
-      }
-
-      async function listarLotes() {
-        const removerLoteDiv = document.getElementById("removerLoteDiv");
-        if (
-          removerLoteDiv.style.display === "none" ||
-          removerLoteDiv.innerHTML === ""
-        ) {
-          const response = await fetch("http://localhost:3000/lote");
-          const lotes = await response.json();
-          const options = lotes
-            .map(
-              (lote) =>
-                `<option value="${lote.ID_Lote}">ID: ${lote.ID_Lote}</option>`
-            )
-            .join("");
-          const select = `
-        <p><strong>Nota:</strong> Certifique-se de excluir todas as plantas associadas antes de remover o lote.</p>
-        <select id="loteSelect">${options}</select>
-        <button onclick="removerLote()">Remover</button>
-        `;
-          removerLoteDiv.innerHTML = select;
-          removerLoteDiv.style.display = "block";
-        } else {
-          removerLoteDiv.style.display = "none";
-        }
-      }
-
-      async function removerLote() {
-        const id = document.getElementById("loteSelect").value;
-        const response = await fetch(`http://localhost:3000/lote/${id}`, {
-          method: "DELETE",
-        });
-        alert(await response.text());
-        listarLotes();
-      }
-
-      // Funções para Planta
-      async function criarPlanta() {
-        const planta = {
-          variedade: document.getElementById("variedade").value,
-          data_plantio: document.getElementById("dataPlantio").value,
-          estagio_crescimento:
-            document.getElementById("estagioCrescimento").value,
-          id_lote: document.getElementById("idLotePlanta").value,
-          id_estufa: document.getElementById("idEstufaPlanta").value,
-        };
-        const response = await fetch("http://localhost:3000/planta", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(planta),
-        });
-        alert(await response.text());
-      }
-
-      async function verPlantas() {
-        const listaPlantasDiv = document.getElementById("listaPlantas");
-        if (
-          listaPlantasDiv.style.display === "none" ||
-          listaPlantasDiv.innerHTML === ""
-        ) {
-          const response = await fetch("http://localhost:3000/planta");
-          const plantas = await response.json();
-          const lista = plantas
-            .map(
-              (planta) => `
-            ID: ${planta.ID_Planta}, Variedade: ${planta.Variedade}, Data de Plantio: ${planta.Data_Plantio}, Estágio de Crescimento: ${planta.Estagio_Crescimento}, ID Lote: ${planta.ID_Lote}, ID Estufa: ${planta.ID_Estufa}
-            `
-            )
-            .join("<br>");
-          listaPlantasDiv.innerHTML = lista;
-          listaPlantasDiv.style.display = "block";
-        } else {
-          listaPlantasDiv.style.display = "none";
-        }
-      }
-
-      async function listarPlantas() {
-        const removerPlantaDiv = document.getElementById("removerPlantaDiv");
-        if (
-          removerPlantaDiv.style.display === "none" ||
-          removerPlantaDiv.innerHTML === ""
-        ) {
-          const response = await fetch("http://localhost:3000/planta");
-          const plantas = await response.json();
-          const options = plantas
-            .map(
-              (planta) =>
-                `<option value="${planta.ID_Planta}">ID: ${planta.ID_Planta}</option>`
-            )
-            .join("");
-          const select = `<select id="plantaSelect">${options}</select><button onclick="removerPlanta()">Remover</button>`;
-          removerPlantaDiv.innerHTML = select;
-          removerPlantaDiv.style.display = "block";
-        } else {
-          removerPlantaDiv.style.display = "none";
-        }
-      }
-
-      async function removerPlanta() {
-        const id = document.getElementById("plantaSelect").value;
-        const response = await fetch(`http://localhost:3000/planta/${id}`, {
-          method: "DELETE",
-        });
-        alert(await response.text());
-        listarPlantas();
-      }
-
-      // Funções para Colheita
-      async function criarColheita() {
-        const colheita = {
-          data_colheita: document.getElementById("dataColheita").value,
-          quantidade_colhida:
-            document.getElementById("quantidadeColhida").value,
-          qualidade: document.getElementById("qualidade").value,
-          id_planta: document.getElementById("idPlantaColheita").value,
-        };
-        const response = await fetch("http://localhost:3000/colheita", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(colheita),
-        });
-        alert(await response.text());
-      }
-
-      async function verColheitas() {
-        const listaColheitasDiv = document.getElementById("listaColheitas");
-        if (
-          listaColheitasDiv.style.display === "none" ||
-          listaColheitasDiv.innerHTML === ""
-        ) {
-          const response = await fetch("http://localhost:3000/colheita");
-          const colheitas = await response.json();
-          const lista = colheitas
-            .map(
-              (colheita) => `
-            ID: ${colheita.ID_Colheita}, Data de Colheita: ${new Date(
-                colheita.Data_Colheita
-              ).toLocaleDateString()}, Quantidade Colhida: ${
-                colheita.Quantidade_Colhida
-              }, Qualidade: ${colheita.Qualidade}, ID Planta: ${
-                colheita.ID_Planta
-              }
-            `
-            )
-            .join("<br>");
-          listaColheitasDiv.innerHTML = lista;
-          listaColheitasDiv.style.display = "block";
-        } else {
-          listaColheitasDiv.style.display = "none";
-        }
-      }
-
-      async function listarColheitas() {
-        const removerColheitaDiv =
-          document.getElementById("removerColheitaDiv");
-        if (
-          removerColheitaDiv.style.display === "none" ||
-          removerColheitaDiv.innerHTML === ""
-        ) {
-          const response = await fetch("http://localhost:3000/colheita");
-          const colheitas = await response.json();
-          const options = colheitas
-            .map(
-              (colheita) =>
-                `<option value="${colheita.ID_Colheita}">ID: ${colheita.ID_Colheita}</option>`
-            )
-            .join("");
-          const select = `<select id="colheitaSelect">${options}</select><button onclick="removerColheita()">Remover</button>`;
-          removerColheitaDiv.innerHTML = select;
-          removerColheitaDiv.style.display = "block";
-        } else {
-          removerColheitaDiv.style.display = "none";
-        }
-      }
-
-      async function removerColheita() {
-        const id = document.getElementById("colheitaSelect").value;
-        const response = await fetch(`http://localhost:3000/colheita/${id}`, {
-          method: "DELETE",
-        });
-        alert(await response.text());
-        listarColheitas();
-      }
-    </script>
+    <script src="actions/estufa.js"></script>
+    <script src="actions/lote.js"></script>
+    <script src="actions/planta.js"></script>
+    <script src="actions/colheita.js"></script>
   </body>
 </html>
