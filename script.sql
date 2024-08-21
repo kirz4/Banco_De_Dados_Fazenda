@@ -97,3 +97,27 @@ CREATE TABLE Venda (
     FOREIGN KEY (ID_Lote) REFERENCES Lote(ID_Lote),
     FOREIGN KEY (ID_Comprador) REFERENCES Comprador(ID_Comprador)
 );
+
+-- Criação da View para combinar informações de Planta e Estufa
+CREATE VIEW vw_PlantaEstufa AS
+SELECT 
+    p.ID_Planta, 
+    p.Variedade, 
+    e.Localizacao, 
+    e.Temperatura
+FROM 
+    Planta p
+JOIN 
+    Estufa e ON p.ID_Estufa = e.ID_Estufa;
+
+-- Criação da View para combinar informações de Planta e Lote
+CREATE VIEW vw_PlantaLote AS
+SELECT 
+    p.ID_Planta, 
+    p.Variedade, 
+    l.ID_Lote, 
+    l.Data_Criacao
+FROM 
+    Planta p
+JOIN 
+    Lote l ON p.ID_Lote = l.ID_Lote;

@@ -148,6 +148,28 @@ app.delete("/colheita/:id", (req, res) => {
   });
 });
 
+// Mostrar as views
+
+// Rota para a View PlantaEstufa
+app.get("/vw_PlantaEstufa", (req, res) => {
+  db.query("SELECT * FROM vw_PlantaEstufa", (err, results) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.json(results);
+  });
+});
+
+// Rota para a View PlantaLote
+app.get("/vw_PlantaLote", (req, res) => {
+  db.query("SELECT * FROM vw_PlantaLote", (err, results) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.json(results);
+  });
+});
+
 // Iniciar o servidor
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");

@@ -28,19 +28,19 @@
           <input
             type="number"
             id="temperatura"
-            placeholder="Temperatura: Ex: 25°C"
+            placeholder="Temperatura: Ex: 25.50"
             class="w-full p-2 border border-gray-300 rounded"
           />
           <input
             type="number"
             id="umidade"
-            placeholder="Umidade: Ex: 50%"
+            placeholder="Umidade: Ex: 50.00"
             class="w-full p-2 border border-gray-300 rounded"
           />
           <input
             type="number"
             id="tamanho"
-            placeholder="Tamanho: Ex: 100m²"
+            placeholder="Tamanho: Ex: 100.00"
             class="w-full p-2 border border-gray-300 rounded"
           />
           <button
@@ -190,7 +190,7 @@
           <input
             type="number"
             id="quantidadeColhida"
-            placeholder="Quantidade Colhida: Ex: 100.00g"
+            placeholder="Quantidade Colhida: Ex: 100.00"
             class="w-full p-2 border border-gray-300 rounded"
           />
           <input
@@ -232,11 +232,36 @@
         Listar Colheitas para Remover
       </button>
       <div id="removerColheitaDiv" class="mt-4"></div>
+
+      <!-- Seção das Views -->
+      <h1 class="text-4xl font-semibold mb-4 text-center">Views</h1>
+      <div class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Plantas e Estufas</h2>
+        <button
+          onclick="exibirPlantaEstufa()"
+          class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+        >
+          Exibir Plantas e Estufas
+        </button>
+        <div id="listaPlantaEstufa" class="mt-4"></div>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Plantas e Lotes</h2>
+        <button
+          onclick="exibirPlantaLote()"
+          class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+        >
+          Exibir Plantas e Lotes
+        </button>
+        <div id="listaPlantaLote" class="mt-4"></div>
+      </div>
     </div>
 
     <script src="actions/estufa.js"></script>
     <script src="actions/lote.js"></script>
     <script src="actions/planta.js"></script>
     <script src="actions/colheita.js"></script>
+    <script src="actions/views.js"></script>
   </body>
 </html>
