@@ -239,6 +239,17 @@ app.put("/colheita/:id", (req, res) => {
   );
 });
 
+// Rota para gerar o relatório de produção
+app.get("/relatorio/producao", (req, res) => {
+  db.query("CALL sp_GerarRelatorioProducao()", (err, results) => {
+    if (err) {
+      console.error("Erro ao gerar o relatório de produção:", err);
+      return res.status(500).send("Erro ao gerar o relatório de produção");
+    }
+    res.json(results[0]); // Retorna o resultado da procedure
+  });
+});
+
 // Iniciar o servidor
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000");

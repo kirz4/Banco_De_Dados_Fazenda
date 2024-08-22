@@ -313,7 +313,7 @@
           <input
             type="text"
             id="qualidade"
-            placeholder="Qualidade: Ex: A+, A, B-, S, S-, B+"
+            placeholder="Qualidade: Ex: A+, A, S, B+, B"
             class="w-full p-2 border border-gray-300 rounded"
           />
           <input
@@ -362,7 +362,7 @@
           <input
             type="text"
             id="qualidadeAtualizar"
-            placeholder="Nova Qualidade: Ex: A+, A, B-, S, S-, B+"
+            placeholder="Nova Qualidade: Ex: A+, A, S, B+, B"
             class="w-full p-2 border border-gray-300 rounded"
           />
           <input
@@ -414,6 +414,15 @@
         </button>
         <div id="listaPlantaLote" class="mt-4"></div>
       </div>
+      <h3 class="text-xl font-semibold mb-4 mt-4">Relatório de Produção</h3>
+      <button
+        type="button"
+        onclick="gerarRelatorioProducao()"
+        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+      >
+        Gerar Relatório de Produção
+      </button>
+      <div id="relatorioProducao" class="mt-4"></div>
     </div>
 
     <script src="actions/estufa.js"></script>
@@ -421,5 +430,6 @@
     <script src="actions/planta.js"></script>
     <script src="actions/colheita.js"></script>
     <script src="actions/views.js"></script>
+    <script src="actions/procedures.js"></script>
   </body>
 </html>
