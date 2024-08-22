@@ -13,7 +13,7 @@ async function exibirPlantaEstufa() {
               <p><strong>ID Planta:</strong> ${item.ID_Planta}</p>
               <p><strong>Variedade:</strong> ${item.Variedade}</p>
               <p><strong>Localização Estufa:</strong> ${item.Localizacao}</p>
-              <p><strong>Temperatura Estufa:</strong> ${item.Temperatura}</p>
+              <p><strong>Temperatura Estufa:</strong> ${item.Temperatura}°C</p>
             </div>
           `
       )
