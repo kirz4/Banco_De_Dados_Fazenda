@@ -122,12 +122,15 @@ FROM
 JOIN 
     Lote l ON p.ID_Lote = l.ID_Lote;
 
--- Procedure para Atualizar a Temperatura da Estufa
+-- Procedure para atualizar Estufa
 DELIMITER //
 
-CREATE PROCEDURE sp_AtualizarTemperaturaEstufa(
-    IN estufaID INT, 
-    IN novaTemperatura DECIMAL(5,2)
+CREATE PROCEDURE sp_AtualizarEstufa(
+    IN estufaID INT,
+    IN novaLocalizacao VARCHAR(100),
+    IN novaTemperatura DECIMAL(5,2),
+    IN novaUmidade DECIMAL(5,2),
+    IN novoTamanho DECIMAL(5,2)
 )
 BEGIN
     DECLARE estufaExiste INT;
@@ -139,26 +142,62 @@ BEGIN
         -- Se a estufa não existir, retorna uma mensagem de erro
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'A estufa com o ID fornecido não existe.';
     ELSE
-        -- Atualiza a temperatura da estufa se ela existir
+        -- Atualiza as informações da estufa se ela existir
         UPDATE Estufa
-        SET Temperatura = novaTemperatura
+        SET Localizacao = novaLocalizacao, 
+            Temperatura = novaTemperatura, 
+            Umidade = novaUmidade, 
+            Tamanho = novoTamanho
         WHERE ID_Estufa = estufaID;
 
         -- Retorna uma mensagem confirmando a atualização
-        SELECT CONCAT('A temperatura da estufa com ID ', estufaID, ' foi atualizada para ', novaTemperatura, '°C') AS Mensagem;
+        SELECT CONCAT('A estufa com ID ', estufaID, ' foi atualizada com sucesso.') AS Mensagem;
     END IF;
 END //
 
 DELIMITER ;
 
-
--- Procedure para Atualizar o Estágio de Crescimento da Planta
-
+-- Procedure para atualizar Lote
 DELIMITER //
 
-CREATE PROCEDURE sp_AtualizarEstagioCrescimento(
-    IN plantaID INT, 
-    IN novoEstagio VARCHAR(50)
+CREATE PROCEDURE sp_AtualizarLote(
+    IN loteID INT,
+    IN novaDataCriacao DATE,
+    IN novoNumeroPlantas INT
+)
+BEGIN
+    DECLARE loteExiste INT;
+
+    -- Verifica se o lote com o ID fornecido existe
+    SELECT COUNT(*) INTO loteExiste FROM Lote WHERE ID_Lote = loteID;
+
+    IF loteExiste = 0 THEN
+        -- Se o lote não existir, retorna uma mensagem de erro
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'O lote com o ID fornecido não existe.';
+    ELSE
+        -- Atualiza as informações do lote se ele existir
+        UPDATE Lote
+        SET Data_Criacao = novaDataCriacao, 
+            Numero_Plantas = novoNumeroPlantas
+        WHERE ID_Lote = loteID;
+
+        -- Retorna uma mensagem confirmando a atualização
+        SELECT CONCAT('O lote com ID ', loteID, ' foi atualizado com sucesso.') AS Mensagem;
+    END IF;
+END //
+
+DELIMITER ;
+
+-- Procedure para atualizar Planta
+DELIMITER //
+
+CREATE PROCEDURE sp_AtualizarPlanta(
+    IN plantaID INT,
+    IN novaVariedade VARCHAR(100),
+    IN novaDataPlantio DATE,
+    IN novoEstagioCrescimento VARCHAR(100),
+    IN novoIDLote INT,
+    IN novoIDEstufa INT
 )
 BEGIN
     DECLARE plantaExiste INT;
@@ -170,13 +209,52 @@ BEGIN
         -- Se a planta não existir, retorna uma mensagem de erro
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'A planta com o ID fornecido não existe.';
     ELSE
-        -- Atualiza o estágio de crescimento da planta se ela existir
+        -- Atualiza as informações da planta se ela existir
         UPDATE Planta
-        SET Estagio_Crescimento = novoEstagio
+        SET Variedade = novaVariedade, 
+            Data_Plantio = novaDataPlantio, 
+            Estagio_Crescimento = novoEstagioCrescimento, 
+            ID_Lote = novoIDLote, 
+            ID_Estufa = novoIDEstufa
         WHERE ID_Planta = plantaID;
 
         -- Retorna uma mensagem confirmando a atualização
-        SELECT CONCAT('O estágio de crescimento da planta com ID ', plantaID, ' foi atualizado para ', novoEstagio) AS Mensagem;
+        SELECT CONCAT('A planta com ID ', plantaID, ' foi atualizada com sucesso.') AS Mensagem;
+    END IF;
+END //
+
+DELIMITER ;
+
+-- Procedure para atualizar Colheita
+DELIMITER //
+
+CREATE PROCEDURE sp_AtualizarColheita(
+    IN colheitaID INT,
+    IN novaDataColheita DATE,
+    IN novaQuantidadeColhida DECIMAL(10,2),
+    IN novaQualidade VARCHAR(100),
+    IN novoIDPlanta INT
+)
+BEGIN
+    DECLARE colheitaExiste INT;
+
+    -- Verifica se a colheita com o ID fornecido existe
+    SELECT COUNT(*) INTO colheitaExiste FROM Colheita WHERE ID_Colheita = colheitaID;
+
+    IF colheitaExiste = 0 THEN
+        -- Se a colheita não existir, retorna uma mensagem de erro
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'A colheita com o ID fornecido não existe.';
+    ELSE
+        -- Atualiza as informações da colheita se ela existir
+        UPDATE Colheita
+        SET Data_Colheita = novaDataColheita, 
+            Quantidade_Colhida = novaQuantidadeColhida, 
+            Qualidade = novaQualidade, 
+            ID_Planta = novoIDPlanta
+        WHERE ID_Colheita = colheitaID;
+
+        -- Retorna uma mensagem confirmando a atualização
+        SELECT CONCAT('A colheita com ID ', colheitaID, ' foi atualizada com sucesso.') AS Mensagem;
     END IF;
 END //
 

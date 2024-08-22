@@ -75,3 +75,33 @@ async function removerLote() {
   alert(await response.text());
   listarLotes();
 }
+
+// Função para atualizar as informações do Lote
+async function atualizarLote() {
+  const idLote = document.getElementById("idLote").value;
+  const lote = {
+    data_criacao: document.getElementById("dataCriacaoAtualizar").value,
+    numero_plantas: document.getElementById("numeroPlantasAtualizar").value,
+  };
+
+  try {
+    const response = await fetch(`http://localhost:3000/lote/${idLote}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(lote),
+    });
+
+    if (!response.ok) {
+      const erro = await response.text();
+      throw new Error(erro);
+    }
+
+    const resultado = await response.json();
+    const mensagem = resultado[0]?.Mensagem || "Erro ao atualizar o lote.";
+    alert(mensagem);
+  } catch (error) {
+    alert(error.message);
+  }
+}

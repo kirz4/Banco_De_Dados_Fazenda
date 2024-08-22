@@ -77,3 +77,35 @@ async function removerEstufa() {
   alert(await response.text());
   listarEstufas();
 }
+
+// Função para atualizar as informações da Estufa
+async function atualizarEstufa() {
+  const idEstufa = document.getElementById("idEstufa").value;
+  const estufa = {
+    localizacao: document.getElementById("localizacaoAtualizar").value,
+    temperatura: document.getElementById("temperaturaAtualizar").value,
+    umidade: document.getElementById("umidadeAtualizar").value,
+    tamanho: document.getElementById("tamanhoAtualizar").value,
+  };
+
+  try {
+    const response = await fetch(`http://localhost:3000/estufa/${idEstufa}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(estufa),
+    });
+
+    if (!response.ok) {
+      const erro = await response.text();
+      throw new Error(erro);
+    }
+
+    const resultado = await response.json();
+    const mensagem = resultado[0]?.Mensagem || "Erro ao atualizar a estufa.";
+    alert(mensagem);
+  } catch (error) {
+    alert(error.message);
+  }
+}

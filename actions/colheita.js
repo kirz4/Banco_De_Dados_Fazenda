@@ -81,3 +81,39 @@ async function removerColheita() {
   alert(await response.text());
   listarColheitas();
 }
+
+// Função para atualizar as informações da Colheita
+async function atualizarColheita() {
+  const idColheita = document.getElementById("idColheita").value;
+  const colheita = {
+    data_colheita: document.getElementById("dataColheitaAtualizar").value,
+    quantidade_colhida: document.getElementById("quantidadeColhidaAtualizar")
+      .value,
+    qualidade: document.getElementById("qualidadeAtualizar").value,
+    id_planta: document.getElementById("idPlantaColheitaAtualizar").value,
+  };
+
+  try {
+    const response = await fetch(
+      `http://localhost:3000/colheita/${idColheita}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(colheita),
+      }
+    );
+
+    if (!response.ok) {
+      const erro = await response.text();
+      throw new Error(erro);
+    }
+
+    const resultado = await response.json();
+    const mensagem = resultado[0]?.Mensagem || "Erro ao atualizar a colheita.";
+    alert(mensagem);
+  } catch (error) {
+    alert(error.message);
+  }
+}

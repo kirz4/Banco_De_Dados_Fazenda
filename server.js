@@ -170,15 +170,14 @@ app.get("/vw_PlantaLote", (req, res) => {
   });
 });
 
-// Rota para Atualizar o Estágio de Crescimento da Planta
-
-app.put("/planta/:id/estagio", (req, res) => {
+// Rota para Atualizar a Estufa
+app.put("/estufa/:id", (req, res) => {
   const { id } = req.params;
-  const { estagio } = req.body;
+  const { localizacao, temperatura, umidade, tamanho } = req.body;
 
   db.query(
-    "CALL sp_AtualizarEstagioCrescimento(?, ?)",
-    [id, estagio],
+    "CALL sp_AtualizarEstufa(?, ?, ?, ?, ?)",
+    [id, localizacao, temperatura, umidade, tamanho],
     (err, results) => {
       if (err) {
         return res.status(500).send(err.sqlMessage);
@@ -188,15 +187,49 @@ app.put("/planta/:id/estagio", (req, res) => {
   );
 });
 
-// Rota para atualizar temperatura da estufa
-
-app.put("/estufa/:id/temperatura", (req, res) => {
+// Rota para Atualizar o Lote
+app.put("/lote/:id", (req, res) => {
   const { id } = req.params;
-  const { temperatura } = req.body;
+  const { data_criacao, numero_plantas } = req.body;
 
   db.query(
-    "CALL sp_AtualizarTemperaturaEstufa(?, ?)",
-    [id, temperatura],
+    "CALL sp_AtualizarLote(?, ?, ?)",
+    [id, data_criacao, numero_plantas],
+    (err, results) => {
+      if (err) {
+        return res.status(500).send(err.sqlMessage);
+      }
+      res.json(results[0]); // Retorna a mensagem de confirmação da Procedure
+    }
+  );
+});
+
+// Rota para Atualizar a Planta
+app.put("/planta/:id", (req, res) => {
+  const { id } = req.params;
+  const { variedade, data_plantio, estagio_crescimento, id_lote, id_estufa } =
+    req.body;
+
+  db.query(
+    "CALL sp_AtualizarPlanta(?, ?, ?, ?, ?, ?)",
+    [id, variedade, data_plantio, estagio_crescimento, id_lote, id_estufa],
+    (err, results) => {
+      if (err) {
+        return res.status(500).send(err.sqlMessage);
+      }
+      res.json(results[0]); // Retorna a mensagem de confirmação da Procedure
+    }
+  );
+});
+
+// Rota para Atualizar a Colheita
+app.put("/colheita/:id", (req, res) => {
+  const { id } = req.params;
+  const { data_colheita, quantidade_colhida, qualidade, id_planta } = req.body;
+
+  db.query(
+    "CALL sp_AtualizarColheita(?, ?, ?, ?, ?)",
+    [id, data_colheita, quantidade_colhida, qualidade, id_planta],
     (err, results) => {
       if (err) {
         return res.status(500).send(err.sqlMessage);

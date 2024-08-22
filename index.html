@@ -59,17 +59,58 @@
           Ver Estufas
         </button>
         <div id="listaEstufas" class="mt-4"></div>
-      </div>
 
-      <h3 class="text-xl font-semibold mb-4">Remover Estufa</h3>
-      <button
-        type="button"
-        onclick="listarEstufas()"
-        class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-      >
-        Listar Estufas para Remover
-      </button>
-      <div id="removerEstufaDiv" class="mt-4"></div>
+        <h3 class="text-xl font-semibold mb-4 mt-4">Atualizar Estufa</h3>
+        <form id="atualizarEstufaForm" class="space-y-4">
+          <input
+            type="number"
+            id="idEstufa"
+            placeholder="ID da Estufa: Ex: 1"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="text"
+            id="localizacaoAtualizar"
+            placeholder="Nova Localização: Ex: A1, B2, C3"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="temperaturaAtualizar"
+            placeholder="Nova Temperatura: Ex: 25.50"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="umidadeAtualizar"
+            placeholder="Nova Umidade: Ex: 50.00"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="tamanhoAtualizar"
+            placeholder="Novo Tamanho: Ex: 100.00"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <button
+            type="button"
+            onclick="atualizarEstufa()"
+            class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700"
+          >
+            Atualizar Estufa
+          </button>
+        </form>
+
+        <h3 class="text-xl font-semibold mb-4 mt-4">Remover Estufa</h3>
+        <button
+          type="button"
+          onclick="listarEstufas()"
+          class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+        >
+          Listar Estufas para Remover
+        </button>
+        <div id="removerEstufaDiv" class="mt-4"></div>
+      </div>
 
       <!-- Seção de Lote -->
       <div class="mb-8 mt-8">
@@ -103,17 +144,46 @@
           Ver Lotes
         </button>
         <div id="listaLotes" class="mt-4"></div>
-      </div>
 
-      <h3 class="text-xl font-semibold mb-4">Remover Lote</h3>
-      <button
-        type="button"
-        onclick="listarLotes()"
-        class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-      >
-        Listar Lotes para Remover
-      </button>
-      <div id="removerLoteDiv" class="mt-4"></div>
+        <h3 class="text-xl font-semibold mb-4 mt-4">Atualizar Lote</h3>
+        <form id="atualizarLoteForm" class="space-y-4">
+          <input
+            type="number"
+            id="idLote"
+            placeholder="ID do Lote: Ex: 1"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="date"
+            id="dataCriacaoAtualizar"
+            placeholder="Nova Data de Criação"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="numeroPlantasAtualizar"
+            placeholder="Novo Número de Plantas: Ex: 100"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <button
+            type="button"
+            onclick="atualizarLote()"
+            class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700"
+          >
+            Atualizar Lote
+          </button>
+        </form>
+
+        <h3 class="text-xl font-semibold mb-4 mt-4">Remover Lote</h3>
+        <button
+          type="button"
+          onclick="listarLotes()"
+          class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+        >
+          Listar Lotes para Remover
+        </button>
+        <div id="removerLoteDiv" class="mt-4"></div>
+      </div>
 
       <!-- Seção de Planta -->
       <div class="mb-8">
@@ -165,17 +235,64 @@
           Ver Plantas
         </button>
         <div id="listaPlantas" class="mt-4"></div>
-      </div>
 
-      <h3 class="text-xl font-semibold mb-4">Remover Planta</h3>
-      <button
-        type="button"
-        onclick="listarPlantas()"
-        class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-      >
-        Listar Plantas para Remover
-      </button>
-      <div id="removerPlantaDiv" class="mt-4"></div>
+        <h3 class="text-xl font-semibold mb-4 mt-4">Atualizar Planta</h3>
+        <form id="atualizarPlantaForm" class="space-y-4">
+          <input
+            type="number"
+            id="idPlanta"
+            placeholder="ID da Planta: Ex: 1"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="text"
+            id="variedadeAtualizar"
+            placeholder="Nova Variedade: Ex: Pinheiro, Samambaiais, Cactos"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="date"
+            id="dataPlantioAtualizar"
+            placeholder="Nova Data de Plantio"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="text"
+            id="estagioCrescimentoAtualizar"
+            placeholder="Novo Estágio de Crescimento: Ex: Germinação, Crescimento, Frutificação"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="idLotePlantaAtualizar"
+            placeholder="Novo ID do Lote: Ex: 1, 2, 3"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="idEstufaPlantaAtualizar"
+            placeholder="Novo ID da Estufa: Ex: 1, 2, 3"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <button
+            type="button"
+            onclick="atualizarPlanta()"
+            class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700"
+          >
+            Atualizar Planta
+          </button>
+        </form>
+
+        <h3 class="text-xl font-semibold mb-4 mt-4">Remover Planta</h3>
+        <button
+          type="button"
+          onclick="listarPlantas()"
+          class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+        >
+          Listar Plantas para Remover
+        </button>
+        <div id="removerPlantaDiv" class="mt-4"></div>
+      </div>
 
       <!-- Seção de Colheita -->
       <div class="mb-8">
@@ -221,17 +338,58 @@
           Ver Colheitas
         </button>
         <div id="listaColheitas" class="mt-4"></div>
-      </div>
 
-      <h3 class="text-xl font-semibold mb-4">Remover Colheita</h3>
-      <button
-        type="button"
-        onclick="listarColheitas()"
-        class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-      >
-        Listar Colheitas para Remover
-      </button>
-      <div id="removerColheitaDiv" class="mt-4"></div>
+        <h3 class="text-xl font-semibold mb-4 mt-4">Atualizar Colheita</h3>
+        <form id="atualizarColheitaForm" class="space-y-4">
+          <input
+            type="number"
+            id="idColheita"
+            placeholder="ID da Colheita: Ex: 1"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="date"
+            id="dataColheitaAtualizar"
+            placeholder="Nova Data de Colheita"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="quantidadeColhidaAtualizar"
+            placeholder="Nova Quantidade Colhida: Ex: 100.00"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="text"
+            id="qualidadeAtualizar"
+            placeholder="Nova Qualidade: Ex: A+, A, B-, S, S-, B+"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <input
+            type="number"
+            id="idPlantaColheitaAtualizar"
+            placeholder="Novo ID da Planta: Ex: 1, 2, 3"
+            class="w-full p-2 border border-gray-300 rounded"
+          />
+          <button
+            type="button"
+            onclick="atualizarColheita()"
+            class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700"
+          >
+            Atualizar Colheita
+          </button>
+        </form>
+
+        <h3 class="text-xl font-semibold mb-4 mt-4">Remover Colheita</h3>
+        <button
+          type="button"
+          onclick="listarColheitas()"
+          class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+        >
+          Listar Colheitas para Remover
+        </button>
+        <div id="removerColheitaDiv" class="mt-4"></div>
+      </div>
 
       <!-- Seção das Views -->
       <h1 class="text-4xl font-semibold mb-4 text-center">Views</h1>
@@ -256,67 +414,6 @@
         </button>
         <div id="listaPlantaLote" class="mt-4"></div>
       </div>
-
-      <!-- Seção das Procedures -->
-      <h1 class="text-4xl font-semibold mb-8 text-center">Procedures</h1>
-
-      <!-- Atualizar Temperatura da Estufa -->
-      <div class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">
-          Atualizar Temperatura da Estufa
-        </h2>
-        <form id="atualizarTemperaturaForm" class="space-y-4">
-          <input
-            type="number"
-            id="idEstufaTemperatura"
-            placeholder="ID da Estufa: Ex: 1"
-            class="w-full p-2 border border-gray-300 rounded"
-          />
-          <input
-            type="number"
-            id="novaTemperatura"
-            placeholder="Nova Temperatura: Ex: 28.5"
-            class="w-full p-2 border border-gray-300 rounded"
-          />
-          <button
-            type="button"
-            onclick="atualizarTemperaturaEstufa()"
-            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          >
-            Atualizar Temperatura
-          </button>
-        </form>
-        <div id="resultadoAtualizacaoTemperatura" class="mt-4"></div>
-      </div>
-
-      <!-- Atualizar Estágio de Crescimento da Planta -->
-      <div class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">
-          Atualizar Estágio de Crescimento da Planta
-        </h2>
-        <form id="atualizarEstagioForm" class="space-y-4">
-          <input
-            type="number"
-            id="idPlantaEstagio"
-            placeholder="ID da Planta: Ex: 1"
-            class="w-full p-2 border border-gray-300 rounded"
-          />
-          <input
-            type="text"
-            id="novoEstagioCrescimento"
-            placeholder="Novo Estágio: Ex: Frutificação"
-            class="w-full p-2 border border-gray-300 rounded"
-          />
-          <button
-            type="button"
-            onclick="atualizarEstagioCrescimentoPlanta()"
-            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          >
-            Atualizar Estágio
-          </button>
-        </form>
-        <div id="resultadoAtualizacaoEstagio" class="mt-4"></div>
-      </div>
     </div>
 
     <script src="actions/estufa.js"></script>
@@ -324,6 +421,5 @@
     <script src="actions/planta.js"></script>
     <script src="actions/colheita.js"></script>
     <script src="actions/views.js"></script>
-    <script src="actions/procedures.js"></script>
   </body>
 </html>

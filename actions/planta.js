@@ -79,3 +79,37 @@ async function removerPlanta() {
   alert(await response.text());
   listarPlantas();
 }
+
+// Função para atualizar as informações da Planta
+async function atualizarPlanta() {
+  const idPlanta = document.getElementById("idPlanta").value;
+  const planta = {
+    variedade: document.getElementById("variedadeAtualizar").value,
+    data_plantio: document.getElementById("dataPlantioAtualizar").value,
+    estagio_crescimento: document.getElementById("estagioCrescimentoAtualizar")
+      .value,
+    id_lote: document.getElementById("idLotePlantaAtualizar").value,
+    id_estufa: document.getElementById("idEstufaPlantaAtualizar").value,
+  };
+
+  try {
+    const response = await fetch(`http://localhost:3000/planta/${idPlanta}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(planta),
+    });
+
+    if (!response.ok) {
+      const erro = await response.text();
+      throw new Error(erro);
+    }
+
+    const resultado = await response.json();
+    const mensagem = resultado[0]?.Mensagem || "Erro ao atualizar a planta.";
+    alert(mensagem);
+  } catch (error) {
+    alert(error.message);
+  }
+}
