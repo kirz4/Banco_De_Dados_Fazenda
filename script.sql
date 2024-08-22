@@ -259,3 +259,65 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-- Procedure para gerar o relatório de produção
+DELIMITER //
+
+CREATE PROCEDURE sp_GerarRelatorioProducao()
+BEGIN
+    SELECT 
+        e.Localizacao AS Estufa,
+        l.ID_Lote AS Lote,
+        p.Variedade AS Planta,
+        SUM(c.Quantidade_Colhida) AS Quantidade_Total,
+        CASE
+            -- Mapeamento corrigido conforme a ordem de valor:
+            WHEN AVG(CASE c.Qualidade
+                        WHEN 'S' THEN 5
+                        WHEN 'A+' THEN 4
+                        WHEN 'A' THEN 3
+                        WHEN 'B+' THEN 2
+                        WHEN 'B' THEN 1
+                        ELSE 0
+                     END) >= 4.5 THEN 'S'
+            WHEN AVG(CASE c.Qualidade
+                        WHEN 'S' THEN 5
+                        WHEN 'A+' THEN 4
+                        WHEN 'A' THEN 3
+                        WHEN 'B+' THEN 2
+                        WHEN 'B' THEN 1
+                        ELSE 0
+                     END) >= 3.5 THEN 'A+'
+            WHEN AVG(CASE c.Qualidade
+                        WHEN 'S' THEN 5
+                        WHEN 'A+' THEN 4
+                        WHEN 'A' THEN 3
+                        WHEN 'B+' THEN 2
+                        WHEN 'B' THEN 1
+                        ELSE 0
+                     END) >= 2.5 THEN 'A'
+            WHEN AVG(CASE c.Qualidade
+                        WHEN 'S' THEN 5
+                        WHEN 'A+' THEN 4
+                        WHEN 'A' THEN 3
+                        WHEN 'B+' THEN 2
+                        WHEN 'B' THEN 1
+                        ELSE 0
+                     END) >= 1.5 THEN 'B+'
+            ELSE 'B'
+        END AS Media_Qualidade
+    FROM 
+        Colheita c
+    JOIN 
+        Planta p ON c.ID_Planta = p.ID_Planta
+    JOIN 
+        Lote l ON p.ID_Lote = l.ID_Lote
+    JOIN 
+        Estufa e ON p.ID_Estufa = e.ID_Estufa
+    GROUP BY 
+        e.Localizacao, l.ID_Lote, p.Variedade
+    ORDER BY 
+        e.Localizacao, l.ID_Lote, p.Variedade;
+END //
+
+DELIMITER ;
