@@ -105,3 +105,13 @@ async function atualizarLote() {
     alert(error.message);
   }
 }
+
+// Função para mostrar ou ocultar o formulário de atualização
+function toggleFormularioAtualizarLote() {
+  const form = document.getElementById("atualizarLoteForm");
+  if (form.style.display === "none" || form.style.display === "") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
+}

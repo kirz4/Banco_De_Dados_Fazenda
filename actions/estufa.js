@@ -109,3 +109,12 @@ async function atualizarEstufa() {
     alert(error.message);
   }
 }
+
+function toggleFormularioAtualizarEstufa() {
+  const form = document.getElementById("atualizarEstufaForm");
+  if (form.style.display === "none" || form.style.display === "") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
+}

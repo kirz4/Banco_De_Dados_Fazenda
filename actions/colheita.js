@@ -117,3 +117,13 @@ async function atualizarColheita() {
     alert(error.message);
   }
 }
+
+// Função para mostrar ou ocultar o formulário de atualização
+function toggleFormularioAtualizarColheita() {
+  const form = document.getElementById("atualizarColheitaForm");
+  if (form.style.display === "none" || form.style.display === "") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
+}

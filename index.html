@@ -61,8 +61,14 @@
         </button>
         <div id="listaEstufas" class="mt-4"></div>
 
-        <h3 class="text-xl font-semibold mb-4 mt-4">Atualizar Estufa</h3>
-        <form id="atualizarEstufaForm" class="space-y-4">
+        <button
+          type="button"
+          onclick="toggleFormularioAtualizarEstufa()"
+          class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 mb-4"
+        >
+          Mostrar Formulário de Atualização
+        </button>
+        <form id="atualizarEstufaForm" class="space-y-4" style="display: none">
           <input
             type="number"
             id="idEstufa"
@@ -96,7 +102,7 @@
           <button
             type="button"
             onclick="atualizarEstufa()"
-            class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700"
+            class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
           >
             Atualizar Estufa
           </button>
@@ -147,8 +153,14 @@
         </button>
         <div id="listaLotes" class="mt-4"></div>
 
-        <h3 class="text-xl font-semibold mb-4 mt-4">Atualizar Lote</h3>
-        <form id="atualizarLoteForm" class="space-y-4">
+        <button
+          type="button"
+          onclick="toggleFormularioAtualizarLote()"
+          class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 mb-4"
+        >
+          Mostrar Formulário de Atualização
+        </button>
+        <form id="atualizarLoteForm" class="space-y-4" style="display: none">
           <input
             type="number"
             id="idLote"
@@ -170,7 +182,7 @@
           <button
             type="button"
             onclick="atualizarLote()"
-            class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700"
+            class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
           >
             Atualizar Lote
           </button>
@@ -239,8 +251,14 @@
         </button>
         <div id="listaPlantas" class="mt-4"></div>
 
-        <h3 class="text-xl font-semibold mb-4 mt-4">Atualizar Planta</h3>
-        <form id="atualizarPlantaForm" class="space-y-4">
+        <button
+          type="button"
+          onclick="toggleFormularioAtualizarPlanta()"
+          class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 mb-4"
+        >
+          Mostrar Formulário de Atualização
+        </button>
+        <form id="atualizarPlantaForm" class="space-y-4" style="display: none">
           <input
             type="number"
             id="idPlanta"
@@ -280,7 +298,7 @@
           <button
             type="button"
             onclick="atualizarPlanta()"
-            class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700"
+            class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
           >
             Atualizar Planta
           </button>
@@ -343,8 +361,18 @@
         </button>
         <div id="listaColheitas" class="mt-4"></div>
 
-        <h3 class="text-xl font-semibold mb-4 mt-4">Atualizar Colheita</h3>
-        <form id="atualizarColheitaForm" class="space-y-4">
+        <button
+          type="button"
+          onclick="toggleFormularioAtualizarColheita()"
+          class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 mb-4"
+        >
+          Mostrar Formulário de Atualização
+        </button>
+        <form
+          id="atualizarColheitaForm"
+          class="space-y-4"
+          style="display: none"
+        >
           <input
             type="number"
             id="idColheita"
@@ -378,7 +406,7 @@
           <button
             type="button"
             onclick="atualizarColheita()"
-            class="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700"
+            class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
           >
             Atualizar Colheita
           </button>

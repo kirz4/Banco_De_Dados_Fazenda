@@ -113,3 +113,13 @@ async function atualizarPlanta() {
     alert(error.message);
   }
 }
+
+// Função para mostrar ou ocultar o formulário de atualização
+function toggleFormularioAtualizarPlanta() {
+  const form = document.getElementById("atualizarPlantaForm");
+  if (form.style.display === "none" || form.style.display === "") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
+}
